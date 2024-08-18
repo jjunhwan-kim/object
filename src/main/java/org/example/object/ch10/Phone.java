@@ -1,18 +1,21 @@
 package org.example.object.ch10;
 
-import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Phone extends AbstractPhone {
-    private Money amount;
-    private Duration seconds;
+public abstract class Phone {
 
-    public Phone(Money amount, Duration seconds) {
-        this.amount = amount;
-        this.seconds = seconds;
+    private List<Call> calls = new ArrayList<>();
+
+    public Money calculateFee() {
+        Money result = Money.ZERO;
+
+        for (Call call : calls) {
+            result = result.plus(calculateCallFee(call));
+        }
+
+        return result;
     }
 
-    @Override
-    protected Money calculateCallFee(Call call) {
-        return amount.times((double) call.getDuration().getSeconds() / seconds.getSeconds());
-    }
+    protected abstract Money calculateCallFee(Call call);
 }
