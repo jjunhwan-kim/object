@@ -2,11 +2,11 @@ package org.example.object.ch11;
 
 import java.time.Duration;
 
-public class TaxableRegularPhone extends RegularPhone {
+public class TaxableNightlyDiscountPhone extends NightlyDiscountPhone {
     private double taxRate;
 
-    public TaxableRegularPhone(Money amount, Duration seconds, double taxRate) {
-        super(amount, seconds);
+    public TaxableNightlyDiscountPhone(Money nightlyAmount, Money regularAmount, Duration seconds, double taxRate) {
+        super(nightlyAmount, regularAmount, seconds);
         this.taxRate = taxRate;
     }
 
